@@ -12,3 +12,60 @@ This is developed using:
 - React + TypeScript
 - Tailwind CSS (styling)
 - OpenAI GPT-4o
+
+## Deployment
+
+This application can be deployed to both **Cloudflare Pages** and **Cloudflare Workers**.
+
+### Cloudflare Pages Deployment
+
+1. Build the application:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy the `dist` directory to Cloudflare Pages
+
+### Cloudflare Workers Deployment
+
+#### Prerequisites
+- Install [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) or use the included dev dependency
+- Configure Wrangler with your Cloudflare account: `npx wrangler login`
+
+#### Configuration
+The application includes a `wrangler.toml` configuration file for Workers deployment. You may need to update:
+
+1. **name**: Change the worker name if desired
+2. **routes**: Configure your custom domain routes
+3. **vars**: Add any required environment variables
+
+#### Deploy to Workers
+
+1. **Option 1: Using the deployment script**
+   ```bash
+   npm run deploy:workers
+   ```
+
+2. **Option 2: Manual deployment**
+   ```bash
+   npm run build:workers
+   npx wrangler deploy
+   ```
+
+#### Local Development with Workers Runtime
+
+```bash
+# Run with local Workers runtime
+npm run preview:workers
+
+# Or with remote Cloudflare services
+npm run dev:workers
+```
+
+#### Key Differences
+
+- **Pages**: Optimized for static sites with serverless functions
+- **Workers**: Pure serverless environment, handles all routing programmatically
+- **Build**: Workers deployment uses a memory-optimized build command to handle large bundle sizes
+
+The application works identically on both platforms, with the same features and performance characteristics.

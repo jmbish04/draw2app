@@ -6,8 +6,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "build:workers": "NODE_OPTIONS='--max-old-space-size=6144' npx astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy:workers": "npm run build:workers && wrangler deploy",
+    "dev:workers": "wrangler dev",
+    "preview:workers": "wrangler dev --local"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -50,6 +54,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@types/react-syntax-highlighter": "^15.5.13"
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "wrangler": "^4.26.0"
   }
 }
